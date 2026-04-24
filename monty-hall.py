@@ -33,19 +33,30 @@ def play_change(n:int = 1000) -> float:
             exito += 1
 
     return exito/n
-
-
-
         
 
 def play_stay(n:int = 1000)->float:
     """Juega monty-hall con la estrategia de NO cambiar la puerta"""
-    ...
+    exito = 0 
+    for i in range(n):
+
+        puerta_esc = create_game()
+        puerta_gan = create_game()
+        
+        if puerta_esc == puerta_gan:
+            exito += 1
+    return exito / n
+
 
 def main():
-    success_change = play_change()
-    #success_stay   = play_stay()
-    print(f"{success_change=} {success_stay=}")
+    n_juegos = 10000
+    success_change = play_change(n_juegos)
+    success_stay   = play_stay(n_juegos)
+    
+    print(f"Resultados de la simulación con n = {n_juegos}")
+    print("---------------------------------------------")
+    print(f"Tasa de éxito al QUEDARSE: {success_stay:.4f}")
+    print(f"Tasa de éxito al CAMBIAR:  {success_change:.4f}")
 
 
 if "__name__" == "__main__":
